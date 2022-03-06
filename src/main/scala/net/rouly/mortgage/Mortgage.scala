@@ -2,6 +2,8 @@ package net.rouly.mortgage
 
 object Mortgage extends App {
 
+  println(monthlyLoanPaymentAmount(520000, 0.04, 30))
+
   /** Compute the monthly loan repayment amount.
     * @param amount total loan principle
     * @param rate annual interest rate
@@ -10,10 +12,10 @@ object Mortgage extends App {
     * @see https://www.businessinsider.com/personal-finance/how-to-calculate-mortgage-payment
     */
   def monthlyLoanPaymentAmount(
-    amount: Double,
-    rate: Double,
+    amount: BigDecimal,
+    rate: BigDecimal,
     term: Int
-  ): Double = {
+  ): BigDecimal = {
     val monthlyRate = rate / 12
     val payments = term * 12
 
@@ -21,7 +23,7 @@ object Mortgage extends App {
     val i = monthlyRate
     val n = payments
 
-    val x = Math.pow(1 + i, n)
+    val x = (1 + i).pow(n)
     (P * (i * x)) / (x - 1)
   }
 
@@ -33,10 +35,10 @@ object Mortgage extends App {
     * @see https://www.businessinsider.com/personal-finance/how-to-calculate-mortgage-payment
     */
   def loanPrincipleFromMonthlyPaymentAmount(
-    monthlyPayment: Double,
-    rate: Double,
+    monthlyPayment: BigDecimal,
+    rate: BigDecimal,
     term: Int
-  ): Double = {
+  ): BigDecimal = {
     val monthlyRate = rate / 12
     val payments = term * 12
 
@@ -44,14 +46,14 @@ object Mortgage extends App {
     val i = monthlyRate
     val n = payments
 
-    val x = Math.pow(1 + i, n)
+    val x = (1 + i).pow(n)
     (M * (x - 1)) / (i * x)
   }
 
   /** Compute total tax deduction based on legal limits and input amounts. */
-  private def taxDeduction(interest: Double, propertyTax: Double): Double = {
-    val interestDeduction = Math.min(interest, 750 * 1000) // 2021 limit of 750k
-    val propertyTaxDeduction = Math.min(propertyTax, 10 * 1000) // 2021 limit of 10k
+  private def taxDeduction(interest: BigDecimal, propertyTax: BigDecimal): BigDecimal = {
+    val interestDeduction = interest.min(750 * 1000) // 2021 limit of 750k
+    val propertyTaxDeduction = propertyTax.min(10 * 1000) // 2021 limit of 10k
     interestDeduction + propertyTaxDeduction
   }
 }

@@ -3,32 +3,33 @@ package net.rouly.mortgage
 object IncomeTax {
 
   /** Compute federal income tax statement from annual gross income. */
-  def federal(income: Double): Statement = Statement(Constants.FederalIncomeTaxBrackets)(income)
+  def federal(income: BigDecimal): Statement = Statement(Constants.FederalIncomeTaxBrackets)(income)
 
   /** Compute the amount of income tax using a defined set of brackets for an annual gross income.
     * @param brackets tax brackets
     * @param income annual gross income
     * @return tax bill
     */
-  def computeTax(brackets: Seq[Bracket])(income: Double): Double = brackets.foldLeft(0d) {
-    case (agg, bracket) => agg + bracket(income)
-  }
+  def computeTax(brackets: Seq[Bracket])(income: BigDecimal): BigDecimal =
+    brackets.foldLeft(BigDecimal(0)) { case (agg, bracket) =>
+      agg + bracket(income)
+    }
 
   case class Statement(
-    income: Double,
-    tax: Double,
-    effectiveRate: Double
+    income: BigDecimal,
+    tax: BigDecimal,
+    effectiveRate: BigDecimal
   )
 
-  case class Bracket(lower: Double, upper: Double, rate: Double) {
-    def apply(income: Double): Double = {
-      val applicable = Math.max(Math.min(upper, income), lower) - lower
+  case class Bracket(lower: BigDecimal, upper: BigDecimal, rate: BigDecimal) {
+    def apply(income: BigDecimal): BigDecimal = {
+      val applicable = upper.min(income).max(lower) - lower
       applicable * rate
     }
   }
 
   object Statement {
-    def apply(brackets: Seq[Bracket])(income: Double): Statement = {
+    def apply(brackets: Seq[Bracket])(income: BigDecimal): Statement = {
       val tax = computeTax(brackets)(income)
       Statement(
         income = income,
