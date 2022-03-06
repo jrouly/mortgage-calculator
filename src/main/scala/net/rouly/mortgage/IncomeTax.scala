@@ -1,19 +1,15 @@
-package net.rouly
-package mortgage
+package net.rouly.mortgage
 
 object IncomeTax {
 
-  def federal(income: Double): Statement = apply(Constants.FederalIncomeTaxBrackets)(income)
+  /** Compute federal income tax statement from annual gross income. */
+  def federal(income: Double): Statement = Statement(Constants.FederalIncomeTaxBrackets)(income)
 
-  def apply(brackets: Seq[Bracket])(income: Double): Statement = {
-    val tax = computeTax(brackets)(income)
-    Statement(
-      income = income,
-      tax = tax,
-      effectiveRate = tax / income
-    )
-  }
-
+  /** Compute the amount of income tax using a defined set of brackets for an annual gross income.
+    * @param brackets tax brackets
+    * @param income annual gross income
+    * @return tax bill
+    */
   def computeTax(brackets: Seq[Bracket])(income: Double): Double = brackets.foldLeft(0d) {
     case (agg, bracket) => agg + bracket(income)
   }
@@ -28,6 +24,17 @@ object IncomeTax {
     def apply(income: Double): Double = {
       val applicable = Math.max(Math.min(upper, income), lower) - lower
       applicable * rate
+    }
+  }
+
+  object Statement {
+    def apply(brackets: Seq[Bracket])(income: Double): Statement = {
+      val tax = computeTax(brackets)(income)
+      Statement(
+        income = income,
+        tax = tax,
+        effectiveRate = tax / income
+      )
     }
   }
 
