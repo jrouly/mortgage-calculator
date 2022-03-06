@@ -2,8 +2,6 @@ package net.rouly.mortgage
 
 object Mortgage extends App {
 
-  println(monthlyLoanPaymentAmount(520000, 0.04, 30))
-
   /** Compute the monthly loan repayment amount.
     * @param amount total loan principle
     * @param rate annual interest rate
