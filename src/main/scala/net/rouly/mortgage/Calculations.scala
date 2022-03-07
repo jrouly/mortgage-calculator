@@ -14,7 +14,6 @@ object Calculations {
     * @param mortgageRate mortgage loan annual interest rate
     * @param mortgageTerm mortgage loan term
     * @param propertyTaxRate annual property tax rate
-    * @param hoa monthly home owners association payment
     * @return estimated monthly payment
     */
   def calculateMonthlyPayment(
@@ -23,10 +22,10 @@ object Calculations {
     mortgageRate: BigDecimal,
     mortgageTerm: Period,
     propertyTaxRate: BigDecimal,
-    hoa: BigDecimal
   ): BigDecimal = {
     val downPaymentAmount = downPayment.fold(identity, _ * homeValue)
     val downPaymentPercent = downPaymentAmount / homeValue
+
     val loanPrinciple = homeValue - downPaymentAmount
     val loanPayment = Loan.monthlyPayment(loanPrinciple, mortgageRate, mortgageTerm)
     val propertyTax = propertyTaxRate * homeValue
