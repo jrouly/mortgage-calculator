@@ -18,6 +18,10 @@ lazy val http = project
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
       "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
-      "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion
+      "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
+
+      "ch.qos.logback" % "logback-classic" % "1.2.10",
+      "com.typesafe.scala-logging" %% "scala-logging" % "3.9.4",
+      "com.github.pureconfig" %% "pureconfig" % "0.17.1"
     )
   )
