@@ -22,7 +22,7 @@ class IncomeTaxSpec extends AnyFlatSpec with Matchers {
   val brackets = Seq(
     IncomeTax.Bracket(lower = 100, upper = 1000, rate = 0.1),
     IncomeTax.Bracket(lower = 2000, upper = 3000, rate = 0.2),
-    IncomeTax.Bracket(lower = 3000, upper = 10000, rate = 0.3),
+    IncomeTax.Bracket(lower = 3000, upper = 10000, rate = 0.3)
   )
 
   "income below all brackets" should "not be counted" in {

@@ -1,8 +1,23 @@
-name := "mortgage-calculator"
-description := "Simple mortgage calculator."
-organization := "net.rouly"
-scalaVersion := "3.1.1"
+val commonSettings = Seq(
+  name := s"mortgage-calculator-${name.value}",
+  description := "Simple mortgage calculator.",
+  organization := "net.rouly",
+  scalaVersion := "2.13.8",
+  libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.11" % "test"
+)
 
-Global / onChangedBuildSource := ReloadOnSourceChanges
+lazy val core = project.settings(commonSettings)
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.11" % "test"
+val AkkaVersion = "2.6.18"
+val AkkaHttpVersion = "10.2.9"
+
+lazy val http = project
+  .dependsOn(core)
+  .settings(commonSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
+      "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
+      "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion
+    )
+  )

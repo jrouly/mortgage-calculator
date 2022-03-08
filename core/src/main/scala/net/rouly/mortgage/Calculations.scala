@@ -1,10 +1,8 @@
 package net.rouly.mortgage
 
-import net.rouly.mortgage.Currency.*
+import net.rouly.mortgage.Currency._
 
-import java.math.MathContext
 import java.time.Period
-import scala.math.BigDecimal.RoundingMode
 
 object Calculations {
 
@@ -21,7 +19,7 @@ object Calculations {
     downPayment: Either[BigDecimal, BigDecimal],
     mortgageRate: BigDecimal,
     mortgageTerm: Period,
-    propertyTaxRate: BigDecimal,
+    propertyTaxRate: BigDecimal
   ): BigDecimal = {
     val downPaymentAmount = downPayment.fold(identity, _ * homeValue)
     val downPaymentPercent = downPaymentAmount / homeValue
@@ -71,7 +69,8 @@ object Calculations {
       propertyTaxRate = propertyTaxRate
     )
     val monthlyLoanRepayment = monthlyPayment - monthlyPropertyTax
-    val loanPrinciple = Loan.principleFromMonthlyPayment(monthlyLoanRepayment, mortgageRate, mortgageTerm)
+    val loanPrinciple =
+      Loan.principleFromMonthlyPayment(monthlyLoanRepayment, mortgageRate, mortgageTerm)
     val homeValue = loanPrinciple + downPayment
     val downPaymentPercent = downPayment / homeValue
 

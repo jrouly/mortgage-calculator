@@ -1,8 +1,8 @@
 package net.rouly.mortgage
 
-import net.rouly.mortgage.Currency.*
-import org.scalatest.flatspec.*
-import org.scalatest.matchers.should.*
+import net.rouly.mortgage.Currency._
+import org.scalatest.flatspec._
+import org.scalatest.matchers.should._
 
 import java.time.Period
 
