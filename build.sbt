@@ -24,7 +24,6 @@ lazy val http = project
       "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
       "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
 
-      "com.lihaoyi" %% "scalatags" % "0.11.1",
       "ch.qos.logback" % "logback-classic" % "1.2.10",
       "com.typesafe.scala-logging" %% "scala-logging" % "3.9.4",
       "com.github.pureconfig" %% "pureconfig" % "0.17.1"

@@ -14,20 +14,20 @@ class MortgageRouter {
 
   def root: Route = path("") {
     get {
-      val body = MortgageService.root.render
-      complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, body))
+      val body = "Mortgage Calculator"
+      complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, body))
     }
   }
 
   def monthlyPayment: Route = path("monthly-payment") {
     get {
-      complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "monthly payment"))
+      complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, "monthly payment"))
     }
   }
 
   def budget: Route = path("budget") {
     get {
-      complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "max budget"))
+      complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, "max budget"))
     }
   }
 
