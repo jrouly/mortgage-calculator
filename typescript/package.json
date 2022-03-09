@@ -2,8 +2,11 @@
   "name": "mortgage-calculator",
   "description": "Simple mortgage math utility in Scala. Provides two primary functions: calculating a monthly payment from a home value and mortgage parameters, and calculating the maximum affordable house given personal finance parameters.",
   "version": "0.0.1",
-  "main": "index.js",
-  "scripts": {},
+  "private": true,
+  "scripts": {
+    "build": "tsc && webpack",
+    "clean": "rm -rf lib dist"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/jrouly/mortgage-calculator.git"
@@ -15,6 +18,9 @@
   },
   "homepage": "https://github.com/jrouly/mortgage-calculator#readme",
   "devDependencies": {
-    "typescript": "^4.6.2"
-  }
+    "typescript": "^4.6.2",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {}
 }

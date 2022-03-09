@@ -1,6 +1,7 @@
 .attach_pid*
 .bsp
 .idea
+lib
 
 # Created by https://www.toptal.com/developers/gitignore/api/sbt,osx,scala,linux,intellij,node,yarn
 # Edit at https://www.toptal.com/developers/gitignore?templates=sbt,osx,scala,linux,intellij,node,yarn

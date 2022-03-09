@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "es6",
+    "target": "es6",
+    "noImplicitAny": true,
+    "outDir": "lib",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true
+  },
+  "include": ["src/**/*", "tests/**/*"]
+}
