@@ -14,18 +14,7 @@ class MortgageRouter {
 
   def root: Route = path("") {
     get {
-      val body =
-        """
-          |<html>
-          |<head><title>mortgage-calculator</title></head>
-          |<body>
-          |Welcome to mortgage-calculator.
-          |<ul>
-          |<li><a href="/monthly-payment">calculate monthly payment</a></li>
-          |<li><a href="/budget">calculate affordable budget</a></li>
-          |</body>
-          |</html>
-          |""".stripMargin
+      val body = MortgageService.root.render
       complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, body))
     }
   }
