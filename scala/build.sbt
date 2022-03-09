@@ -8,6 +8,8 @@ val commonSettings = Seq(
 
 ThisBuild / dynverSeparator := "-"
 
+name := "mortgage-calculator"
+
 lazy val core = project.settings(commonSettings)
 
 val AkkaVersion = "2.6.18"
