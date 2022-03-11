@@ -8,7 +8,7 @@ import pureconfig.ConfigSource
 import pureconfig.generic.auto._
 
 import scala.concurrent.ExecutionContext
-import scala.io.StdIn
+import scala.util.{Failure, Success}
 
 object MortgageApp extends App with StrictLogging {
 
@@ -20,12 +20,12 @@ object MortgageApp extends App with StrictLogging {
   private val routes = LoggingInterceptor(router.routes)
   private val server = Http().newServerAt(config.host, config.port).bind(routes)
 
-  logger.info(s"Server listening at http://${config.host}:${config.port}")
-  logger.info(s"Press RETURN to stop...")
-
-  StdIn.readLine()
-
-  server
-    .flatMap(_.unbind()) // trigger unbinding from the port
-    .onComplete(_ => system.terminate()) // and shutdown when done
+  server.onComplete {
+    case Success(binding) =>
+      val address = binding.localAddress
+      logger.info(s"Server online at http://${address.getHostString}:${address.getPort}/")
+    case Failure(exception) =>
+      logger.error(s"Failed to bind HTTP endpoint, terminating system.", exception)
+      system.terminate()
+  }
 }
