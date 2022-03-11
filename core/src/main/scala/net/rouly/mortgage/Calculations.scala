@@ -42,13 +42,17 @@ object Calculations {
         annualGrossIncome = annualGrossIncome,
         monthlyGrossIncome = monthlyGrossIncome,
         debtIncomeRatio = debtIncomeRatio,
-        downPayment = downPayment,
+        downPaymentAmount = downPayment,
         downPaymentPercent = downPaymentPercent,
         monthlyPayment = monthlyPayment,
         monthlyLoanRepayment = monthlyLoanRepayment,
         monthlyPropertyTax = monthlyPropertyTax,
         loanPrinciple = loanPrinciple,
-        homeValue = homeValue
+        homeValue = homeValue,
+        annualMortgageRate = mortgageRate,
+        mortgageTerm = mortgageTerm,
+        annualPropertyTaxRate = propertyTaxRate,
+        annualPropertyTax = monthlyPropertyTax * 12,
       )
     }
 
@@ -77,13 +81,17 @@ object Calculations {
       annualGrossIncome: BigDecimal,
       monthlyGrossIncome: BigDecimal,
       debtIncomeRatio: BigDecimal,
-      downPayment: BigDecimal,
+      downPaymentAmount: BigDecimal,
       downPaymentPercent: BigDecimal,
       monthlyPayment: BigDecimal,
       monthlyLoanRepayment: BigDecimal,
       monthlyPropertyTax: BigDecimal,
       loanPrinciple: BigDecimal,
-      homeValue: BigDecimal
+      homeValue: BigDecimal,
+      annualMortgageRate: BigDecimal,
+      mortgageTerm: Period,
+      annualPropertyTaxRate: BigDecimal,
+      annualPropertyTax: BigDecimal,
     )
 
   }
@@ -120,9 +128,12 @@ object Calculations {
         downPaymentPercent = downPaymentPercent,
         homeValue = homeValue,
         loanPrinciple = loanPrinciple,
-        monthlyLoadRepayment = monthlyLoanRepayment,
+        monthlyLoanRepayment = monthlyLoanRepayment,
         monthlyPayment = monthlyPayment,
-        monthlyPropertyTax = monthlyPropertyTax
+        monthlyPropertyTax = monthlyPropertyTax,
+        annualMortgageRate = mortgageRate,
+        mortgageTerm = mortgageTerm,
+        annualPropertyTaxRate = propertyTaxRate
       )
     }
 
@@ -132,9 +143,12 @@ object Calculations {
       downPaymentPercent: BigDecimal,
       homeValue: BigDecimal,
       loanPrinciple: BigDecimal,
-      monthlyLoadRepayment: BigDecimal,
+      monthlyLoanRepayment: BigDecimal,
       monthlyPayment: BigDecimal,
-      monthlyPropertyTax: BigDecimal
+      monthlyPropertyTax: BigDecimal,
+      annualMortgageRate: BigDecimal,
+      mortgageTerm: Period,
+      annualPropertyTaxRate: BigDecimal
     )
   }
 }

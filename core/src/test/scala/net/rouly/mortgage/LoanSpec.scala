@@ -15,7 +15,7 @@ class LoanSpec extends AnyFlatSpec with Matchers {
         annualInterestRate = 0.04,
         term = Period.ofYears(30)
       )
-      .toCurrency shouldEqual 2482.56
+      .toCurrency shouldEqual "$2482.56"
   }
 
   "total principal" should "be correctly calculated" in {
@@ -25,7 +25,7 @@ class LoanSpec extends AnyFlatSpec with Matchers {
         annualInterestRate = 0.04,
         term = Period.ofYears(30)
       )
-      .toCurrency shouldEqual 418922.48
+      .toCurrency shouldEqual "$418922.48"
   }
 
   "monthly payment" should "map to total principal" in {

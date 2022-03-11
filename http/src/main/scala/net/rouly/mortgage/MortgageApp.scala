@@ -15,8 +15,8 @@ object MortgageApp extends App with StrictLogging {
   implicit private val system: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "mortgage-app")
   implicit private val executionContext: ExecutionContext = system.executionContext
 
-  private val config = ConfigSource.default.loadOrThrow[MortgageConfig]
-  private val router = new MortgageRouter()
+  private val config = ConfigSource.default.loadOrThrow[MortgageAppConfig]
+  private val router = new MortgageAppRouter()
   private val routes = LoggingInterceptor(router.routes)
   private val server = Http().newServerAt(config.host, config.port).bind(routes)
 
