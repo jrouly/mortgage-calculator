@@ -170,7 +170,10 @@ object MortgageAppTemplates {
   private def base(title: String)(body: Elem): Elem =
     <html>
       <head><title>{title}</title></head>
-      <body>{body}</body>
+      <body>
+        <a href="/">home</a>
+        {body}
+      </body>
     </html>
 
 }
