@@ -117,19 +117,19 @@ object MortgageAppTemplates {
           value={breakdown.map(_.annualGrossIncome.toString).orNull}
         /><br />
 
+        Down payment amount:
+        <input
+          type="text"
+          name="down-payment"
+          value={breakdown.map(_.downPaymentAmount.toString).orNull}
+        /><br />
+
         Housing debt to income ratio:
         <input
           type="text"
           name="debt-income-ratio"
           value={breakdown.map(_.debtIncomeRatio.toString).orNull}
           placeholder="0.28"
-        /><br />
-
-        Down payment amount:
-        <input
-          type="text"
-          name="down-payment"
-          value={breakdown.map(_.downPaymentAmount.toString).orNull}
         /><br />
 
         Mortgage rate:
