@@ -1,9 +1,9 @@
 val commonSettings = Seq(
-  name := s"mortgage-calculator-${name.value}",
   description := "Simple mortgage calculator.",
+  libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.11" % "test",
+  name := s"mortgage-calculator-${name.value}",
   organization := "net.rouly",
   scalaVersion := "2.13.8",
-  libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.11" % "test",
 )
 
 ThisBuild / dynverSeparator := "-"
@@ -19,7 +19,11 @@ lazy val http = project
   .enablePlugins(DockerPlugin, JavaServerAppPackaging)
   .dependsOn(core)
   .settings(commonSettings)
-  .settings(dockerBaseImage := "openjdk:11-jre")
+  .settings(
+    dockerBaseImage := "openjdk:11-jre",
+    dockerUpdateLatest := true,
+    dockerUsername := Some("jrouly"),
+  )
   .settings(
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,

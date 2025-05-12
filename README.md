@@ -33,3 +33,11 @@ Calculations.AffordableBudget(
   propertyTaxRate = 0.01,
 )
 ```
+
+## webserver
+
+[`jrouly/mortgage-calculator-http`](https://hub.docker.com/r/jrouly/mortgage-calculator-http/)
+
+```
+sbt http/Docker/publish
+```
